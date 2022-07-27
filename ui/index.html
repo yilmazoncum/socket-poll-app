@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Poll App</title>
-</head>
-<body>
-    <h1>Selam</h1>
-</body>
-<script src="/socket.io/socket.io.js"></script>
-<script src="client.js"></script>
+  </head>
+  <body>
+    <div class="container mt-2">
+      <div class="card">
+
+        <div class="card-header">Quiz-App</div>
+
+        <div class="card-body">
+            
+          <h5 id="question" class="card-title">Question Text</h5>
+          <hr />
+
+          <div id="buttons">
+            <button id="btn0" class="btn btn-primary">
+              <span id="choice0"> Choice 0 </span>
+            </button>
+
+            <button id="btn1" class="btn btn-primary">
+              <span id="choice1"> Choice 1 </span>
+            </button>
+
+            <button id="btn2" class="btn btn-primary">
+              <span id="choice2"> Choice 2 </span>
+            </button>
+
+            <button id="btn3" class="btn btn-primary">
+              <span id="choice3"> Choice 3 </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
 </html>
