@@ -28,13 +28,15 @@
     </form>
 </body>
 
+<script src="/socket.io/socket.io.js"></script>
 <script>
-//var io = io();
+
+var io = io();
 
 const setQuestion = (e) => {
 
    console.log("sleam");
-
+   
     var choices = [];
 
     for (let index = 0; index < 4; index++) {
@@ -46,14 +48,18 @@ const setQuestion = (e) => {
         answer : choices
     } 
 
-    console.log(question);
+    // Test 
+   var question = {
+       text: "what's the best programming language ?",
+       choices: ["C#", "javascript", "python", "asp.net"]
+   };
+   
+   console.log("createPoll question send");
+   io.emit('questionCreated', question);
+
 }
 
 
-var question = {
-    text: "what's the best programming language ?",
-    choices: ["C#", "javascript", "python", "asp.net"]
-};
 </script>
 
 </html>
