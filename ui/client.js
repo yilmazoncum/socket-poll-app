@@ -14,6 +14,11 @@ io.on('updateResults', (results) => {
     })
 });
 
+io.on("connect", () => {
+    console.log("client-side"+io.id);
+    io.emit('getPollHistory');
+  });
+
 
 const loadQuestion = (question) => {
     var choices = question.choices;
@@ -42,7 +47,3 @@ const disableBtns = ()=>{
         btn.disabled = true;
     })
 }
-
-
-
-loadQuestion();
