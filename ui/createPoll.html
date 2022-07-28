@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Creator Page</h1>
+    <form  action="#"   method="get">
+        <label>Question Text:</label>
+        <input type="text" id="q-text"><br><br>
+
+        <label>Choice 1</label>
+        <input type="text" id="choice1"><br><br>
+
+        <label>Choice 2</label>
+        <input type="text" id="choice2"><br><br>
+
+        <label>Choice 3</label>
+        <input type="text" id="choice3"><br><br>
+
+        <label>Choice 4</label>
+        <input type="text" id="choice4"><br><br>
+
+        <button type="submit" onclick="setQuestion()">Submit</button>
+    </form>
+</body>
+
+<script>
+//var io = io();
+
+const setQuestion = (e) => {
+
+   console.log("sleam");
+
+    var choices = [];
+
+    for (let index = 0; index < 4; index++) {
+        choices.push(document.getElementById("choice"+(index+1)).value)
+    }
+
+    var question = {
+        text: document.getElementById("q-text").value,
+        answer : choices
+    } 
+
+    console.log(question);
+}
+
+
+var question = {
+    text: "what's the best programming language ?",
+    choices: ["C#", "javascript", "python", "asp.net"]
+};
+</script>
+
+</html>
