@@ -4,6 +4,16 @@ io.on('showPoll', (question) => {
     loadQuestion(question)
 })
 
+io.on('updateResults', (results) => {
+    console.log(results);
+    var i = 0;
+    document.querySelectorAll('.votes').forEach(p => {
+        console.log(p);
+        p.textContent = results[i];
+        i++;
+    })
+});
+
 
 const loadQuestion = (question) => {
     var choices = question.choices;

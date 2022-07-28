@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 app.use('/', express.static('ui'));
 
 var connections = []
+var questionDB = []
 
 io.on('connection', (socket) => {
     connections.push(socket)
@@ -13,10 +14,14 @@ io.on('connection', (socket) => {
 
     socket.on('questionCreated', (question) => {
         io.emit('showPoll',question);
+        question.votes = [0,0,0,0];
+        questionDB.push(question);
     });
     
     socket.on('vote', (vote) => {
         console.log("vote server :" +vote.index + " " + vote.guess);    
+        questionDB[0].votes[vote.index]++;
+        io.emit('updateResults',questionDB[0].votes)
     });
 
     socket.on('disconnect', () => {
