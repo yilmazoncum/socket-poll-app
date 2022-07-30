@@ -21,9 +21,20 @@ var question2 = {
     votes: [0,0,0,0]
 };
 
-//questionDB.push(question1);
+questionDB.push(question1);
 questionDB.push(question2);
 
+io.of("/room").on('connection', (socket) => {
+    console.log(`${socket.id} is in a room`);
+
+    socket.on('getPollHistory', ()=>{
+        io.of("/room").emit('showPoll',questionDB);
+    })
+
+    socket.on('disconnect', () => {
+        console.log(`${socket.id} is leave the room`);
+    })
+})
 
 io.on('connection', (socket) => {
     connections.push(socket)
@@ -41,13 +52,13 @@ io.on('connection', (socket) => {
         io.emit('updateResults',questionDB[0].votes)
     });
 
-    socket.on('getPollHistory', ()=>{
-        io.emit('showPoll',questionDB[0]);
-    })
-
     socket.on('disconnect', () => {
         connections = connections.filter((cn) => cn.id !== socket.id);
         console.log(`${socket.id} is disconnected`);
+    })
+
+    socket.on('getSpecificPoll', (id) => {
+        console.log("get specific poll", id);
     })
 })
 

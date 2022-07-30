@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Room</title>
+</head>
+<style>
+.container {
+margin: 50px;
+display: grid;
+grid-template-columns: 560px;
+grid-template-rows: repeat(3, 50px);
+gap : 15px 5px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 400px 50px 100px;
+  grid-template-rows: 50px 50px 50px;
+  gap: 15px 5px;
+  border: 3px solid grey
+}
+
+
+.poll{
+    border-right: 2px solid grey
+}
+
+.btnpoll{
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 80px;
+    height: 40px;
+}
+
+
+
+
+</style>
+<body>
+    <div id="main-container"class="container">
+        <!-- <div class="row 1">
+            <div class="poll 1">poll1</div>
+            <div class="count 1">count1</div>
+            <div class="pollbtn 1"><button class="btnpoll">btn1</button></div>
+        </div>
+        <div class="row 2">
+            <div class="poll 2">poll2</div>
+            <div class="count 2">count2</div>
+            <div class="pollbtn 2"><button class="btnpoll">btn1</button></div>
+        </div>
+        
+        <div class="row 3">
+            <div class="poll 3">poll3</div>
+            <div class="count 3">count3</div>
+            <div class="pollbtn 3"><button class="btnpoll">btn1</button></div>
+        </div> -->
+      </div>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src ="pollRoom.js"></script>
+
+</html>
