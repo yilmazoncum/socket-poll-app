@@ -1,24 +1,30 @@
 var DB = [];
 
+// ! Test Polls
 var question1 = {
     text: "what's the best programming language ?",
     choices: ["C#", "javascript", "python", "asp.net"],
-    votes: [0,0,0,0]
+    votes: [0,0,0,0],
+    voteCount: 0
+    
 };
 var question2 = {
     text: "what's the best city ?",
     choices: ["New York", "Amsterdam", "London", "Berlin"],
-    votes: [0,0,0,0]
+    votes: [0,0,0,0],
+    voteCount: 0
 };
 var question3 = {
     text: "what's the best country?",
     choices: ["Türkiye", "England", "Germany", "United States"],
-    votes: [0,0,0,0]
+    votes: [0,0,0,0],
+    voteCount: 0
 };
 var question4 = {
     text: "what's the best German car brand?",
     choices: ["BMW", "Mercedes", "Audi", "Opel"],
-    votes: [0,0,0,0]
+    votes: [0,0,0,0],
+    voteCount: 0
 };
 
 DB.push(question1);
@@ -41,6 +47,8 @@ const addPoll = (q) => {
 
 const setVote = (id,choice) => {
     DB[id].votes[choice]++;
+    DB[id].voteCount++;
+
 }
 
 const getVotes = (id) => {

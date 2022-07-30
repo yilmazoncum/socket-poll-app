@@ -25,14 +25,12 @@ io.on('connection', (socket) => {
     console.log(`${socket.id} has connected`);
 
     socket.on('questionCreated', (question) => {
-        question.votes = [0,0,0,0];
         db.addPoll(question)
     });
     
     socket.on('vote', (vote) => {
         console.log("vote server :" +vote.index + " " + vote.guess);    
         db.setVote(vote.id,vote.index)
-        //questionDB[0].votes[vote.index]++;
         io.to(socket.id).emit('updateResults',db.getVotes(vote.id))
     });
 

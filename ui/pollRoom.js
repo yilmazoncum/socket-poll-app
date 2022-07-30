@@ -18,8 +18,8 @@ const addRow = (container,rowCount,q) => {
     
     container.innerHTML += `<div class="row ${rowCount}">
             <div class="poll ${rowCount}">${q.text}</div>
-            <div class="count ${rowCount}">count</div>
-            <div class="pollbtn ${rowCount}"><button id="${rowCount}" class="btnpoll">btn</button></div>
+            <div class="count ${rowCount}">${q.voteCount}</div>
+            <div class="pollbtn ${rowCount}"><button id="${rowCount}" class="btnpoll"> VOTE </button></div>
                 </div>` 
     container.style.gridTemplateRows = `repeat(${rowCount+1}, 50px)`
 
