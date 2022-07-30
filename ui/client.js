@@ -39,7 +39,8 @@ const guess = (id, guess,index) => {
         //TODO: save answers in array 
         console.log("clicked " + id + guess);
         disableBtns();
-        io.emit("vote",{guess: guess,index: index})
+        var id = localStorage.getItem('pollID')
+        io.emit("vote",{id: id,guess: guess,index: index})
     }   
 }
 

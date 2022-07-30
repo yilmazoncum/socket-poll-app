@@ -2,33 +2,17 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const db = require('./db.js');
 
 app.use('/', express.static('ui'));
 
 var connections = []
-var questionDB = []
-
-
-// ! TEST TEST TEST
-var question1 = {
-    text: "what's the best programming language ?",
-    choices: ["C#", "javascript", "python", "asp.net"],
-    votes: [0,0,0,0]
-};
-var question2 = {
-    text: "what's the best city ?",
-    choices: ["New York", "Amsterdam", "London", "Berlin"],
-    votes: [0,0,0,0]
-};
-
-questionDB.push(question1);
-questionDB.push(question2);
 
 io.of("/room").on('connection', (socket) => {
     console.log(`${socket.id} is in a room`);
 
     socket.on('getPollHistory', ()=>{
-        io.of("/room").emit('showPoll',questionDB);
+        io.of("/room").emit('showPoll',db.getDB());
     })
 
     socket.on('disconnect', () => {
@@ -41,20 +25,20 @@ io.on('connection', (socket) => {
     console.log(`${socket.id} has connected`);
 
     socket.on('questionCreated', (question) => {
-        io.emit('showPoll',question);
         question.votes = [0,0,0,0];
-        questionDB.push(question);
+        db.addPoll(question)
     });
     
     socket.on('vote', (vote) => {
         console.log("vote server :" +vote.index + " " + vote.guess);    
-        questionDB[0].votes[vote.index]++;
-        io.to(socket.id).emit('updateResults',questionDB[0].votes)
+        db.setVote(vote.id,vote.index)
+        //questionDB[0].votes[vote.index]++;
+        io.to(socket.id).emit('updateResults',db.getVotes(vote.id))
     });
 
     socket.on('getSpecificPoll', (id) => {
         console.log("get specific poll", id);
-        io.to(socket.id).emit('showPoll',questionDB[id])
+        io.to(socket.id).emit('showPoll',db.getPoll(id))
     })
 
     socket.on('disconnect', () => {
