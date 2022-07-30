@@ -49,16 +49,17 @@ io.on('connection', (socket) => {
     socket.on('vote', (vote) => {
         console.log("vote server :" +vote.index + " " + vote.guess);    
         questionDB[0].votes[vote.index]++;
-        io.emit('updateResults',questionDB[0].votes)
+        io.to(socket.id).emit('updateResults',questionDB[0].votes)
     });
+
+    socket.on('getSpecificPoll', (id) => {
+        console.log("get specific poll", id);
+        io.to(socket.id).emit('showPoll',questionDB[id])
+    })
 
     socket.on('disconnect', () => {
         connections = connections.filter((cn) => cn.id !== socket.id);
         console.log(`${socket.id} is disconnected`);
-    })
-
-    socket.on('getSpecificPoll', (id) => {
-        console.log("get specific poll", id);
     })
 })
 

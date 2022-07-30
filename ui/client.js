@@ -1,6 +1,7 @@
 var io = io();
 
 io.on('showPoll', (question) => {
+    console.log(question);
     loadQuestion(question)
 })
 
@@ -15,8 +16,8 @@ io.on('updateResults', (results) => {
 });
 
 io.on("connect", () => {
-    console.log("client-side"+io.id);
-    io.emit('getPollHistory');
+    var id = localStorage.getItem('pollID')
+    io.emit('getSpecificPoll',id);
   });
 
 
