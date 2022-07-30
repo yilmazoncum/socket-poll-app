@@ -6,7 +6,7 @@ var question1 = {
     id:'795e7188-00ee-43cc-b70f-643c8e6b568c',
     text: "what's the best programming language ?",
     choices: ["C#", "javascript", "python", "asp.net"],
-    votes: [0,0,0,0],
+    votes: [2,4,2,1],
     voteCount: 0
     
 };
@@ -21,7 +21,7 @@ var question3 = {
     id: "b3543cff-bb33-43e8-94d7-9fd20a9cb251",
     text: "what's the best country?",
     choices: ["Türkiye", "England", "Germany", "United States"],
-    votes: [0,0,0,0],
+    votes: [5,3,2,6],
     voteCount: 0
 };
 var question4 = {
