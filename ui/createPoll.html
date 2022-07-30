@@ -43,7 +43,7 @@ const setQuestion = (e) => {
 
     var question = {
         text: document.getElementById("q-text").value,
-        answer : choices,
+        choices : choices,
         votes : [0,0,0,0],
         voteCount : 0
     } 
@@ -52,8 +52,6 @@ const setQuestion = (e) => {
    io.emit('questionCreated', question);
 
 }
-
-
 </script>
 
 </html>

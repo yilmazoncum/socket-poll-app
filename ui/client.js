@@ -1,4 +1,5 @@
 var io = io();
+var globalID;
 
 io.on('showPoll', (question) => {
     console.log(question);
@@ -17,18 +18,18 @@ io.on('updateResults', (results) => {
 
 io.on("connect", () => {
     var id = localStorage.getItem('pollID')
+    globalID = id;
     io.emit('getSpecificPoll',id);
   });
 
 
-const loadQuestion = (question) => {
-    var choices = question.choices;
+const loadQuestion = (q) => {
     document.querySelector('#question').textContent = question.text;
 
-    for (var i = 0; i < choices.length; i++) {
+    for (var i = 0; i < q.choices.length; i++) {
         var element = document.querySelector('#choice' + i);
-        element.innerHTML = choices[i];
-        guess('btn' + i, choices[i],i);
+        element.innerHTML = q.choices[i];
+        guess('btn' + i, q.choices[i],i);
     }
     
 }
@@ -36,11 +37,10 @@ const loadQuestion = (question) => {
 const guess = (id, guess,index) => {
     var btn = document.getElementById(id);
     btn.onclick = () => {
-        //TODO: save answers in array 
         console.log("clicked " + id + guess);
         disableBtns();
         var id = localStorage.getItem('pollID')
-        io.emit("vote",{id: id,guess: guess,index: index})
+        io.emit("vote",{id: globalID,guess: guess,index: index})
     }   
 }
 

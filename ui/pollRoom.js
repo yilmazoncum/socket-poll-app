@@ -2,6 +2,7 @@ const container = document.getElementById('main-container');
 
 var io = io("/room");
 var rowCount = 0
+var idArray = [];
 
 io.on("connect", () => {
     io.emit('getPollHistory');
@@ -23,15 +24,14 @@ const addRow = (container,rowCount,q) => {
                 </div>` 
     container.style.gridTemplateRows = `repeat(${rowCount+1}, 50px)`
 
+    idArray.push(q.id);
     addListener();
 }
 
 const addListener = () =>{
     document.querySelectorAll('.btnpoll').forEach(btn => {
         btn.addEventListener('click', () => {
-            console.log('clicked' + btn.id);
-            //! Add real question id
-            localStorage.setItem('pollID', btn.id);
+            localStorage.setItem('pollID', idArray[btn.id]);
             window.location.replace("poll.html")
         });
     })
